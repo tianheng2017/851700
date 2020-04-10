@@ -1,0 +1,17 @@
+<foreach name="lists" item="v">
+    <div class="my_team_alon p">
+        <a href="javascript:void(0);">
+            <div class="team_head" style="padding-top: 0.8rem;height:unset;">
+                <img src="{$v[head_pic]|default="__STATIC__/images/hi.png"}"/>
+            </div>
+			<div class="team_name_time">
+				<span class="t_n">{$v[nickname]}</span>
+				<span class="t_t">直推人数：{$v['zhi_count']}</span>
+				<span class="t_t">团队人数：{$v['team_count']}</span>
+				<span class="t_t">团队业绩：{$v['team_yj']?:0}元</span>
+				<span class="t_t">注册时间：{:date('Y-m-d',$v[reg_time])}</span>
+			</div>
+            <!--<i class="icon-arrow_r"></i>-->
+        </a>
+    </div>
+</foreach>

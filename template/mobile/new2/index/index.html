@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>首页-{$tpshop_config['shop_info_store_title']}</title>
+    <link rel="stylesheet" href="__STATIC__/css/style.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/iconfont.css"/>
+    <script src="__STATIC__/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__STATIC__/js/mobile-util.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__STATIC__/js/layer.js"  type="text/javascript" ></script>
+    <script src="__STATIC__/js/swipeSlide.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        .layermend{
+            top: .1rem;
+        }
+		header {
+			opacity: 1;
+			height: 9rem;
+			z-index: 0;
+			background: url(http://file03.16sucai.com/2016/10/1100/16sucai_p20161002084_246.JPG);
+			position: absolute;
+		}
+		header .login {
+			margin: 0.4rem .21333rem 0;
+			float: right;
+			font-size: .5rem;
+		}
+		header .content {
+			text-align: center;
+			padding-top: .128rem;
+		}
+		.headerbg{
+		    background: linear-gradient(rgba(189, 185, 185, 0.8),rgba(202, 202, 202, 0.8));
+		}
+		.banner-header{
+			padding-top: 2rem;
+		}
+		
+		@media screen and (min-width: 1300px)
+		header {
+			height: .93867rem;
+		}
+		.mslide li img {
+			position: absolute;
+			left: 1rem;
+			top: 0;
+			width: 14rem;
+			height: 7rem;
+			border: none;
+			border-radius: 2%;
+		}
+		.dh nav {
+			margin-top: 1rem;
+		}
+		.mrsx {
+			z-index: 999;
+			height: 10rem;
+			background: #000;
+			width: 95%;
+			margin: 0 auto;
+		}
+        .advertisement{
+            border: none;
+        }
+		.advertisement .le .td img {
+			width: 5rem;
+		}
+		.newshop .re img {
+			height: 5rem;
+		}
+		.advertisement .le {
+			width: unset;
+			padding: 0 0.5rem;
+		}
+    </style>
+</head>
+<body>
+    <!--顶部搜索栏-s-->
+    <header>
+        <div class="content">
+            <div class="ds-in-bl logo">
+                <a href=""><img src="__STATIC__/images/logo.png" alt="LOGO" style="height:1.487516rem!important;margin-top: 0.1rem;margin-left: 1.5rem;width: 2.2rem;"></a>
+            </div>
+            <div class="ds-in-bl login">
+                <span>
+                <if condition="$user_id gt 0">
+                    <a href="{:U('Mobile/User/index')}"> <img height="24px" src="__STATIC__/images/my.png"></a>
+                <else/>
+                    <a href="{:U('Mobile/User/login')}"> 登录</a>
+                </if>
+            </span>
+            </div>
+        </div>
+    </header>
+    <!--顶部搜索栏-e-->
+
+    <!--顶部滚动广告栏-s-->
+	<div class="banner-header ban1">
+        <div class="mslide" id="slideTpshop">
+            <ul>
+                <adv pid ="2" limit="5" item="v">
+                    <li>
+                        <a href="{$v.ad_link}">
+                            <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}" alt="">
+                        </a>
+                    </li>
+                </adv>
+            </ul>
+        </div>
+    </div>
+    <!--顶部滚动广告栏-e-->
+    <!--菜单-start-->
+	<div class="floor dh">
+        <nav>
+            <a href="{:U('Goods/categoryList')}">
+                <span>
+                    <img src="__STATIC__/images/icon_03.png" alt="全部套餐" /><br />
+                    <span>全部套餐</span>
+                </span>
+            </a>
+            <a href="{:U('User/order_list')}">
+                <span>
+                    <img src="__STATIC__/images/icon_16.png" alt="我的订单" /><br />
+                    <span>我的订单</span>
+                </span>
+            </a>
+            <a href="{:U('Cart/cart')}">
+                <span>
+                    <img src="__STATIC__/images/icon_17.png" alt="购物车" /><br />
+                    <span>购物车</span>
+                </span>
+            </a>
+            <a href="{:U('User/index')}">
+                <span>
+                    <img src="__STATIC__/images/icon_19.png" alt="个人中心" /><br />
+                    <span>个人中心</span>
+                </span>
+            </a>
+        </nav>
+    </div>
+    <!--菜单-end-->
+
+    <!--广告位-start-->
+	<div class="banner ma-to-20">
+        <adv limit="1" item="v" pid="400">
+            <a href="{$v.ad_link}">
+            <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}"/>
+            </a>
+        </adv>
+    </div>
+    <div class="floor advertisement">
+        <div class="content">
+            <div class="le lefhe fl">
+                <adv  limit="1" item="v" pid="301">
+                    <a href="{$v.ad_link}">
+                        <div class="td">
+                            <img src="{$v[ad_code]}">
+                        </div>
+                    </a>
+                </adv>
+                <adv  limit="1" item="v" pid="302">
+                    <a href="{$v.ad_link}">
+                        <div class="td">
+                            <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}">
+                        </div>
+                    </a>
+                </adv>
+            </div>
+            <div class="le re fr">
+                <adv  limit="1" item="v" pid="300">
+                    <a href="{$v.ad_link}">
+                        <div class="td">
+                            <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}">
+                        </div>
+                    </a>
+                </adv>
+
+            </div>
+        </div>
+    </div>
+    <!--广告位-end-->
+
+    <!--新品上市-start-->
+	<div class="floor newshop" style="margin-bottom: 50px;">
+<!--        <div class="banner">-->
+<!--            <img src="__STATIC__/images/ind_22.jpg" alt="新品上市"/>-->
+<!--        </div>-->
+        <div class="advertisement">
+            <div class="content">
+                <div class="le re fl" style="width:100%;">
+                    <tpshop sql="select * from __PREFIX__goods where is_new=1 and is_on_sale = 1 order by sort" item="v" key="k">
+                        <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v[goods_id]))}" >
+                            <div class="td" style="position:relative;">
+								<div style="display: inline-block;">
+									<img src="{$v.goods_id|goods_thum_images=400,400}"/>
+								</div>
+								<div style="margin-left:0.3rem;display: inline-block;">
+									<div style="margin-top:1rem;font-size:0.512rem;position: absolute;top: 0.3rem;left: 6rem;">
+										<span>{$v.goods_name}</span>
+									</div>
+									<div style="margin-top:1rem;color: #ef395b;font-size:0.7rem;position: absolute;top: 2.3rem;left: 6rem;">
+										<span>{$v.shop_price}起</span>
+									</div>
+									<div style="font-size:.4rem;position: absolute;left: 12rem;top: 3.1rem;padding: 0.3rem 0.4rem;background: #EFC978;color: #fff;">
+										立即查看
+									</div>
+								</div>
+                            </div>
+                        </a>
+                    </tpshop>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--新品上市-end-->
+	
+    <!--底部-start-->
+<!--    <include file="public/footer"/>-->
+    <!--底部-end-->
+
+    <!--底部导航-start-->
+    <include file="public/footer_nav"/>
+    <!--底部导航-end-->
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<if condition="$user_id gt 0">
+<script>
+    $.ajax({
+        type : "get",
+        url:"/index.php?m=Mobile&c=Index&a=getNotice",
+        success: function(data){
+            if(data){
+                data = JSON.parse(data);
+                layer.open({
+                    title: ['最新公告', 'background-color:#333;color:#fff;font-size:.6rem;height:1.9rem;line-height:1.9rem;']
+                    ,content: data.content
+                    ,style:'font-size:.512rem;'
+                    ,shadeClose:false
+                });
+            }
+        }
+    });
+</script>
+</if>
+<script type="text/javascript">
+    /**
+     * 秒杀模块倒计时
+     * */
+    function GetRTime(end_time){
+        var NowTime = new Date();
+        var t = (end_time*1000) - NowTime.getTime();
+        var d=Math.floor(t/1000/60/60/24);
+        var h=Math.floor(t/1000/60/60%24);
+        var m=Math.floor(t/1000/60%60);
+        var s=Math.floor(t/1000%60);
+        if(s >= 0)
+            return (d * 24 + h) + '时' + m + '分' +s+'秒';
+    }
+    function GetRTime2(){
+        var text = GetRTime('{$end_time}');
+        if (text== 0){
+            $(".hms").text('活动已结束');
+        }else{
+            $(".hms").text(text);
+        }
+    }
+    setInterval(GetRTime2,1000);
+
+    /**
+     * 继续加载猜您喜欢
+     * */
+    //$(function(){
+        //getGoodsList();
+    //});
+    var page = 1;
+    function ajax_sourch_submit(){
+        $('.get_more').show();
+        $.ajax({
+            type : "get",
+            url:"/index.php?m=Mobile&c=Index&a=ajaxGetMore&p="+page,
+            success: function(data)
+            {
+                if(data){
+                    $("#J_ItemList>ul").append(data);
+                    page++;
+                    $('.get_more').hide();
+                }else{
+                    $('.get_more').hide();
+                    $('#getmore').remove();
+                }
+            }
+        });
+    }
+//    //滚动加载更多
+//    $(window).scroll(
+//        function() {
+//            var scrollTop = $(this).scrollTop();
+//            var scrollHeight = $(document).height();
+//            var windowHeight = $(this).height();
+//            if (scrollTop + windowHeight == scrollHeight) {
+//                getGoodsList();//调用加载更多
+//            }
+//        }
+//    );
+</script>
+	</body>
+</html>

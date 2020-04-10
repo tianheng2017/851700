@@ -1,0 +1,139 @@
+<include file="public/header" title="资金管理" body="g4"/>
+    <div class="myhearder bankhearder" style="height: 6rem;">
+        <div class="hh" style="padding-top: 2rem;display: inline-block;width: 33%;">
+            <h2>可用余额</h2>
+            <h1>{$user['user_money']}</h1>
+        </div>
+		<div class="hh" style="padding-top: 2rem;display: inline-block;width: 33%;">
+            <h2>可用鱼分</h2>
+            <h1>{$user.pay_points}</h1>
+        </div>
+		<div class="hh" style="padding-top: 2rem;display: inline-block;width: 31%;">
+            <h2>推广收益</h2>
+            <h1>{$user.activity_money}</h1>
+        </div>
+		<span>
+    </div>
+    <div class="floor my p">
+        <div class="content">
+            <div class="floor list7 ma-to-20">
+				<div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/User/recharge')}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>充值</span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+				<div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/User/withdrawals')}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>提现</span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+				<div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/User/activity_score')}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>收益提取</span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+			    <div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/User/score_tx')}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>鱼分提现</span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+				<div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/User/score_zz')}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>鱼分转帐</span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+				<div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/User/zz')}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>给下级转帐</span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/User/points',array('type'=>'all'))}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>账户明细</span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/User/withdrawals_list')}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>提现记录</span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底部导航-start-->
+    <include file="public/footer_nav" />
+    <!--底部导航-end-->
+</body>
+</html>

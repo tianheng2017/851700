@@ -1,0 +1,108 @@
+<include file="public/header" title="鱼分转账" body=""/>
+<include file="public/header_nav" title="鱼分转账" href="javascript:history.back(-1)"/>
+<style>
+	.btn{
+	    display: inline-block;
+		height: 1.2rem;
+		line-height: 1.2rem;
+		padding: 0 .5rem;
+		background-color: #FF5722;
+		color: #fff;
+		white-space: nowrap;
+		text-align: center;
+		font-size: .55rem;
+		border: none;
+		border-radius: .1rem;
+		cursor: pointer;
+		position: absolute;
+		top: .35rem;
+		left: 4rem;
+	}
+</style>
+<div class="loginsingup-input ma-to-20">
+	<form action="/Mobile/User/score_zz" method="post" onsubmit="return checkSubmit()" style="background-color: #fff;padding-bottom: 1rem;" enctype="multipart/form-data">
+		<div class="content30">
+			<div class="lsu" style="height: 1.83467rem;line-height: 1.83467rem;">
+				<span>我的鱼分：</span>
+				<span style="color:red;font-weight:bold;">{$user['pay_points']}</span>
+			</div>
+			<div class="lsu">
+				<span>对方帐号：</span>
+				<input type="text" name="mobile" id="mobile" placeholder="请输入对方手机号" onKeyUp="this.value=this.value.replace(/[^\d]/g,'')">
+			</div>
+			<div class="lsu">
+				<span>转账数量：</span>
+				<input type="text" name="points" id="points" placeholder="请输入数量" onKeyUp="this.value=this.value.replace(/[^\d]/g,'')">
+			</div>
+ 			<div class="lsu">
+				<span>登陆密码：</span>
+				<input type="password" name="password" id="password" placeholder="请输入登陆密码">
+			</div>
+			<div class="lsu submit">
+				<input type="submit" name="" id="" value="提交申请" style="margin-top:.5rem;">
+			</div>
+		</div>
+	</form>
+</div>
+<script src="__STATIC__/js/form-common.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8">
+	    //发送短信验证码
+    function sendcode(obj){
+        if(flag){
+            $.ajax({
+                url:'/index.php?m=Home&c=Api&a=send_validate_code&t='+Math.random() ,
+                type:'post',
+                dataType:'json',
+                data:{type:$(obj).attr('rel'),send:$.trim($('#username').val()), scene:1},
+                success:function(res){
+                    if(res.status==1){
+                        //成功
+                        countdown(obj)
+                        showErrorMsg(res.msg);
+                    }else{
+                        //失败
+                        showErrorMsg(res.msg);
+                    }
+                }
+            })
+        }
+    }
+	function countdown(obj) {
+        var s = 150;
+        //改变按钮状态
+        obj.disabled = true;
+        callback();
+        //循环定时器
+        var T = window.setInterval(callback,1000);
+        function callback()
+        {
+            if(s <= 0){
+                //移除定时器
+                window.clearInterval(T);
+                obj.disabled=false;
+                obj.innerHTML='获取短信验证码';
+            }else{
+                if(s<=10){
+                    obj.innerHTML = '0'+ --s + '秒后再获取';
+                }else{
+                    obj.innerHTML = --s+ '秒后再获取';
+                }
+            }
+        }
+    }
+
+    /**
+     * 提交表单
+     * */
+    function checkSubmit(){
+        var mobile = $.trim($('#mobile').val());
+        var points = parseFloat($.trim($('#points').val()));
+        var password = $.trim($('#password').val());
+        if(mobile=='' || points == '' || password == ''){
+            showErrorMsg("所有信息为必填");
+            return false;
+        }
+    }
+</script>
+	</body>
+</html>

@@ -1,0 +1,198 @@
+<include file="public/layout" />
+<style type="text/css">
+    .center{
+        text-align: center;
+    }
+</style>
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>商城设置</h3>
+                <h5>网站全局内容基本选项设置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <li><a href="{:U('System/index')}"><span>商城信息</span></a></li>
+                <li><a href="{:U('System/index',array('inc_type'=>'basic'))}" ><span>基本设置</span></a></li>
+                <li><a href="{:U('System/index',array('inc_type'=>'shopping'))}"><span>购物流程</span></a></li>
+                <li><a href="{:U('System/index',array('inc_type'=>'sms'))}" ><span>短信设置</span></a></li>
+                <li><a href="{:U('System/index',array('inc_type'=>'smtp'))}" ><span>邮件设置</span></a></li>
+                <li><a href="{:U('System/index',array('inc_type'=>'water'))}" ><span>水印设置</span></a></li>
+                <li><a href="{:U('System/index',array('inc_type'=>'distribut'))}" class="current"><span>活动设置</span></a></li>
+                <!--<li><a href="{:U('System/index',array('inc_type'=>'wap'))}" ><span>WAP设置</span></a></li>-->
+                <!--<li><a href="{:U('System/index',array('inc_type'=>'extend'))}" ><span>扩展设置</span></a></li>-->
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span> </div>
+        <ul>
+            <li>系统平台全局设置,包括基础设置、购物、短信、邮件、水印和活动等相关模块。</li>
+        </ul>
+    </div>
+    <form method="post" enctype="multipart/form-data" id="handlepost" action="{:U('System/handle')}">
+        <input type="hidden" name="form_submit" value="ok" />
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">活动开关</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="switch1" class="cb-enable  <if condition="$config['switch'] eq 1">selected</if>">开启</label>
+                        <label for="switch0" class="cb-disable <if condition="$config['switch'] eq 0">selected</if>">关闭</label>
+                        <input type="radio" onclick="$('#switch_on_off').show();"  id="switch1"  name="switch" value="1" <if condition="$config['switch'] eq 1">checked="checked"</if>>
+                        <input type="radio" onclick="$('#switch_on_off').hide();" id="switch0" name="switch" value="0" <if condition="$config['switch'] eq 0">checked="checked"</if> >
+                    </div>
+                    <p class="notic">活动开关，关闭后用户确认收货无法叠加积分，也无法领取每日奖励</p>
+                </dd>
+            </dl>
+            <div id="switch_on_off" <if condition="$config['switch'] eq 0">style="display: none;"</if>>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="distribut_date">绑定分类</label>
+                    </dt>
+                    <dd class="opt">
+                        <select name="cat_id" id="cat_id" class="small form-control">
+                            <option value="0">请选择商品分类</option>                                      
+                                <foreach name="catList" item="v" key="k" >                                                                                          
+                                    <option value="{$v['id']}" <if condition="$v['id'] eq $config['cat_id']">selected="selected"</if> >
+                                        {$v['name']}
+                                    </option>
+                                </foreach>
+                        </select>
+                        <p class="notic">只有该分类下的商品才能参与活动</p>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="record_no">鱼分返还活动</label>
+                    </dt>
+                    <dd class="opt">
+                        <span>消费指定分类下的套餐，当用户确认收货后奖励其套餐价格</span>
+                        <input type="text" value="{$config['s1']}" name="s1" class="t_mane center"/>
+                        <span>倍的鱼分，每天返还</span>
+                        <input type="text" value="{$config['s2']}" name="s2" class="t_mane center"/>
+                        <span>% 给用户，直至剩余鱼分不足1分后不再返还</span>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="record_no"></label>
+                    </dt>
+                    <dd class="opt">
+                        <span>鱼分最低提现数量</span>
+                        <input type="text" value="{$config['s3']}" name="s3" class="t_mane center"/>
+                        <span>，单笔提现手续费</span>
+                        <input type="text" value="{$config['s4']}" name="s4" class="t_mane center"/>
+                        <span>%</span>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="record_no">推广奖励</label>
+                    </dt>
+                    <dd class="opt">
+                        <span>1、有效直推1人后，可获取一代消费提成：</span>
+                        <input type="text" value="{$config['s5']}" name="s5" class="t_mane center"/>
+                        <span>%</span>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="record_no"></label>
+                    </dt>
+                    <dd class="opt">
+                        <span>2、有效直推3人后，可获取一代消费提成：</span>
+                        <input type="text" value="{$config['s6']}" name="s6" class="t_mane center"/>
+                        <span>%，获取二代新增消费提成：</span>
+                        <input type="text" value="{$config['s7']}" name="s7" class="t_mane center"/>
+                        <span>%</span>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="record_no"></label>
+                    </dt>
+                    <dd class="opt">
+                        <span>3、有效直推5人后，可获取一代消费提成：</span>
+                        <input type="text" value="{$config['s8']}" name="s8" class="t_mane center"/>
+                        <span>%，获取二代消费提成：</span>
+                        <input type="text" value="{$config['s9']}" name="s9" class="t_mane center"/>
+                        <span>%，获取三代消费提成：</span>
+                        <input type="text" value="{$config['s10']}" name="s10" class="t_mane center"/>
+                        <span>%</span>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="record_no">团队奖励</label>
+                    </dt>
+                    <dd class="opt">
+                        <span>1、有效直推20人，且团队满100人后，可获得团队消费提成：</span>
+                        <input type="text" value="{$config['s11']}" name="s11" class="t_mane center"/>
+                        <span>%</span>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="record_no"></label>
+                    </dt>
+                    <dd class="opt">
+                        <span>2、有效直推30人，且团队满200人后，可获得团队消费提成：</span>
+                        <input type="text" value="{$config['s12']}" name="s12" class="t_mane center"/>
+                        <span>%</span>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="record_no"></label>
+                    </dt>
+                    <dd class="opt">
+                        <span>3、有效直推40人，且团队满400人后，可获得团队消费提成：</span>
+                        <input type="text" value="{$config['s13']}" name="s13" class="t_mane center"/>
+                        <span>%</span>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="record_no">区域领导人奖励</label>
+                    </dt>
+                    <dd class="opt">
+                        <span>1、市级消费奖励</span>
+                        <input type="text" value="{$config['s14']}" name="s14" class="t_mane center"/>
+                        <span>%，区(县)消费奖励</span>
+                        <input type="text" value="{$config['s15']}" name="s15" class="t_mane center"/>
+                        <span>%</span>
+                    </dd>
+                </dl>
+				<dl class="row">
+                    <dt class="tit">
+                        <label for="record_no"></label>
+                    </dt>
+                    <dd class="opt">
+                        <span>2、区域领导人 推荐 区域领导人 拿 被推荐区域领导人 区域新增业绩的：</span>
+                        <input type="text" value="{$config['s16']}" name="s16" class="t_mane center"/>
+                        <span>%</span>
+                    </dd>
+                </dl>
+            </div>
+            <div class="bot">
+                <input type="hidden" name="inc_type" value="{$inc_type}">
+                <a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="adsubmit()">确认提交</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="goTop"> <a href="JavaScript:void(0);" id="btntop"><i class="fa fa-angle-up"></i></a><a href="JavaScript:void(0);" id="btnbottom"><i class="fa fa-angle-down"></i></a></div>
+<script>
+    function adsubmit(){
+        $('#handlepost').submit();
+    }
+</script>
+</body>
+</html>

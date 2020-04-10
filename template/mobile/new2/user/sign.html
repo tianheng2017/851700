@@ -1,0 +1,18 @@
+<include file="public/header" title="每日签到" body="pore_add"/>
+<include file="public/header_nav" title="每日签到" href="javascript:history.back(-1)"/>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/sign2.css"/>
+
+<div style="" id="calendar"></div>
+
+<script type="text/javascript" src="__STATIC__/js/calendar2.js"></script>
+<script type="text/javascript">
+
+$(function(){
+  var signList = {$data};
+  var today = {$today};
+  calUtil.init(signList, '', today);
+});
+
+</script>
+</body>
+</html>
